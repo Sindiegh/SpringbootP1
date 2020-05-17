@@ -23,6 +23,16 @@ public  class FakeRepo implements FakeRepoInterface{
                 return userArray.getUserName() + "";
             }
         }
+        try
+        {
+            System.out.println("Going to sleep for 5 Secs.. to simulate backend call.");
+            Thread.sleep(1000*5);
+        }
+        catch (InterruptedException e)
+        {
+            e.printStackTrace();
+        }
+
         return null;
     }
 

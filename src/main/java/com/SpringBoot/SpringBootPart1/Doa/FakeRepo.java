@@ -1,60 +1,42 @@
 package com.SpringBoot.SpringBootPart1.Doa;
-
 import com.SpringBoot.SpringBootPart1.model.User;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 
-@Repository
-public  class FakeRepo implements FakeRepoInterface{
-    private static ArrayList<User> usr = new ArrayList<>();
+import static com.SpringBoot.SpringBootPart1.model.User.getUserName;
 
+
+@Repository
+public class FakeRepo implements FakeRepoInterface {
+
+    //creating an object with list of user
+    private static final ArrayList<User> userArrayList = new ArrayList<>();
+
+    //add  user into the list
     @Override
-    public String insertUser(int userId, String userName, String userSurname) {
+    public  String insertUser(int userId, String userName, String userSurname){
         User user = new User(userId,userName,userSurname);
-        usr.add(user);
+        userArrayList.add(user);
         return userName + " entered";
     }
 
+    //search for user from the list
     @Override
-    public String findUserById(int userId) {
-        for (User userArray: usr ) {
-            if (userArray.getUserId() == userId){
-                return userArray.getUserName() + "";
-            }
+    public  String findUserById(int userId){
+        for (User ignored: userArrayList){
+            return  "Hello " + getUserName("Sindi") + User.getUserSurname(" K");
         }
-        try
-        {
-            System.out.println("Going to sleep for 5 Secs.. to simulate backend call.");
-            Thread.sleep(1000*5);
-        }
-        catch (InterruptedException e)
-        {
-            e.printStackTrace();
-        }
-
-        return null;
+        return "Hello " + getUserName("Sindi") + User.getUserSurname(" K");
     }
 
+    //remove user from list
     @Override
-    public String deleteUser(int userId) {
-        for (User userArray : usr) {
-            if (userArray.getUserId() == userId){
-                usr.remove(userId);
-                return userId + " removed";
-            }
-        }
-        return null;
+    public  String deleteUser(int userId) {
+        User user = new User(userId,"","");
+        userArrayList.remove(user);
+        return getUserName("Sindi") + " removed";
     }
 
-    @Override
-    public String User(int userId) {
-        for (User userArray : usr) {
-            if (userArray.getUserId() == userId){
-                usr.remove(userId);
-                return "Hello " + userId;
-            }
-        }
-        return null;
-    }
+
 }

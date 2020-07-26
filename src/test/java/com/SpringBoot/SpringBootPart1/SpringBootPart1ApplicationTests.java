@@ -10,11 +10,13 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 @SpringBootTest
 class SpringBootPart1ApplicationTests {
 
+
 	@Test
 	void contextLoads() {
 	}
 
-	UserServiceImplementation userService = new UserServiceImplementation(new FakeRepo(), fakeRepo);
+	FakeRepo fakeRepo = new FakeRepo();
+	UserServiceImplementation userService = new UserServiceImplementation( fakeRepo);
 
 	@Test
 	public void insertUserTest() throws NoSuchMethodException {
@@ -28,15 +30,11 @@ class SpringBootPart1ApplicationTests {
 
 	}
 	@Test
-	public void getUserTest() throws NoSuchMethodException {
+	public void getUserTest() {
 		userService.findUserById(2);
 
 
 	}
 
-	@Autowired
-	private TestRestTemplate template;
-
-	TestRestTemplate response = template.withBasicAuth("Sindiegh","hiThere");
 
 }

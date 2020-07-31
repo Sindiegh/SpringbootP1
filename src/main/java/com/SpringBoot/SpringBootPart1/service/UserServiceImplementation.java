@@ -1,35 +1,35 @@
 package com.SpringBoot.SpringBootPart1.service;
 
-import com.SpringBoot.SpringBootPart1.Doa.FakeRepo;
 import com.SpringBoot.SpringBootPart1.Doa.FakeRepoInterface;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.function.Supplier;
+
 @Service
-public class UserServiceImplementation implements FakeRepoInterface {
+public class UserServiceImplementation implements UserService {
+
+    @Autowired
+    FakeRepoInterface fakeRepoInterface;
 
 
-
-    final FakeRepo fakeRepo;
-
-    public UserServiceImplementation(FakeRepo fakeRepo) {
-
-        this.fakeRepo = fakeRepo;
+    @Override
+    public Supplier<String> addUser(long userId, String userName, String userSurname)  {
+        System.out.println(fakeRepoInterface.insertUser(1,"Jupiter ","Mars ")+"added");
+        return null;
     }
 
     @Override
-    public String insertUser(int userId, String userName, String userSurname) throws NoSuchMethodException {
-        return fakeRepo.insertUser(userId,userName,userSurname);
+    public String removeUser(long userId) {
+        System.out.println(fakeRepoInterface.deleteUser(1)+ " removed");
+
+        return null;
     }
 
     @Override
-    public String findUserById(int userId) {
-        return fakeRepo.findUserById(userId);
+    public String getUser(long userId) {
+        System.out.println("Hello "+fakeRepoInterface.findUserById(1));
+
+        return null;
     }
-
-    @Override
-    public String deleteUser(int userId) {
-        return fakeRepo.deleteUser(userId);
-    }
-
-
 }

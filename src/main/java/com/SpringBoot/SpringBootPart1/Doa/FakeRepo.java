@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 
 import static com.SpringBoot.SpringBootPart1.model.User.getUserName;
+import static com.SpringBoot.SpringBootPart1.model.User.getUserSurname;
 
 
 @Repository
@@ -15,27 +16,27 @@ public class FakeRepo implements FakeRepoInterface {
 
     //add  user into the list
     @Override
-    public  String insertUser(int userId, String userName, String userSurname){
+    public  String insertUser(long userId, String userName, String userSurname){
         User user = new User(userId,userName,userSurname);
         userArrayList.add(user);
-        return userName + " entered";
+        return userName ;
     }
 
     //search for user from the list
     @Override
-    public  String findUserById(int userId){
+    public  String findUserById(long userId){
         for (User ignored: userArrayList){
-            return  "Hello " + getUserName("Sindi") + User.getUserSurname(" K");
+            return   getUserName("Sindi") + getUserSurname(" K");
         }
-        return "Hello " + getUserName("Sindi") + User.getUserSurname(" K");
+        return  getUserName("Sindi") ;
     }
 
     //remove user from list
     @Override
-    public  String deleteUser(int userId) {
+    public  String deleteUser(long userId) {
         User user = new User(userId,"","");
         userArrayList.remove(user);
-        return getUserName("Sindi") + " removed";
+        return getUserName("Sindi") ;
     }
 
 

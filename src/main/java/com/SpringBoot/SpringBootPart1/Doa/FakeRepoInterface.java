@@ -2,8 +2,8 @@ package com.SpringBoot.SpringBootPart1.Doa;
 
 public interface FakeRepoInterface {
 
-    String insertUser(int userId, String userName, String userSurname) throws NoSuchMethodException;
-    String findUserById(int userId);
-    String deleteUser(int userId);
+    String insertUser(long userId, String userName, String userSurname) ;
+    String findUserById(long userId);
+    String deleteUser(long userId);
 
 }

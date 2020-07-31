@@ -1,9 +1,11 @@
 package com.SpringBoot.SpringBootPart1.service;
 
+import java.util.function.Supplier;
+
 public interface UserService {
 
-    String insertUser(int userId, String userName, String userSurname) throws NoSuchMethodException;
-    String findUserById(int userId);
-    String deleteUser(int userId);
-    String User(int userId);
-}
+    Supplier<String> addUser(long userId, String userName, String userSurname) ;
+    String removeUser(long userId);
+    String getUser(long userId);
+
+   }

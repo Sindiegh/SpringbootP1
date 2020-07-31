@@ -1,40 +1,26 @@
 package com.SpringBoot.SpringBootPart1;
 
-import com.SpringBoot.SpringBootPart1.Doa.FakeRepo;
-import com.SpringBoot.SpringBootPart1.service.UserServiceImplementation;
+import com.SpringBoot.SpringBootPart1.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.util.Assert;
 
-@SpringBootTest
+@SpringBootTest(classes = Application.class)
+
 class SpringBootPart1ApplicationTests {
 
+	@Autowired
+	UserService userService;
 
 	@Test
 	void contextLoads() {
+		Assert.isTrue(true,userService.addUser(1,"",""));
+		Assert.isTrue(true,userService.removeUser(1));
+		Assert.isTrue(true,userService.getUser(1));
 	}
 
-	FakeRepo fakeRepo = new FakeRepo();
-	UserServiceImplementation userService = new UserServiceImplementation( fakeRepo);
 
-	@Test
-	public void insertUserTest() throws NoSuchMethodException {
-		userService.insertUser(1,"Sindiswa", "Khama");
-	}
-	@Test
-	public void deleteUserTest(){
-		userService.deleteUser(1);
-
-
-
-	}
-	@Test
-	public void getUserTest() {
-		userService.findUserById(2);
-
-
-	}
 
 
 }
